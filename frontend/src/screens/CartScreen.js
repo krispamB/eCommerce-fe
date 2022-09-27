@@ -37,7 +37,7 @@ const CartScreen = () => {
   }
 
   const checkOutHandler = () => {
-    navigate('/login?redirect=shipping')
+    navigate('/login?redirect=/shipping')
   }
 
   return (
@@ -46,7 +46,7 @@ const CartScreen = () => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go back</Link>{' '}
+            Your cart is empty{' '}<Link to='/'>Go back</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
