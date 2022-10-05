@@ -38,7 +38,7 @@ const OrderScreen = () => {
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get(
-        `https://ecommerce-backend-00fl.onrender.com/api/config/paypal`
+        `/api/config/paypal`
       )
       const script = document.createElement('script')
       script.type = 'text/javascript'

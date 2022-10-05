@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 import {
+  USER_DELETE_FAIL,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_RESET,
@@ -19,6 +22,8 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
 } from '../constants/userConstants'
 
 export const login = (email, password) => async (dispatch) => {
@@ -34,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'https://ecommerce-backend-00fl.onrender.com/api/user/login',
+      '/api/user/login',
       { email, password },
       config
     )
@@ -63,7 +68,7 @@ export const logout = () => (dispatch) => {
   })
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
-  dispatch({type: USER_LIST_RESET})
+  dispatch({ type: USER_LIST_RESET })
 }
 
 export const register = (name, email, password) => async (dispatch) => {
@@ -79,7 +84,7 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'https://ecommerce-backend-00fl.onrender.com/api/user',
+      '/api/user',
       { name, email, password },
       config
     )
@@ -124,7 +129,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/${id}`,
+      `/api/user/${id}`,
       config
     )
 
@@ -161,7 +166,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/profile`,
+      `/api/user/profile`,
       user,
       config
     )
@@ -181,7 +186,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 }
 
-
 export const listUsers = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -199,7 +203,7 @@ export const listUsers = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `https://ecommerce-backend-00fl.onrender.com/api/user`,
+      `/api/user`,
       config
     )
 
@@ -210,6 +214,76 @@ export const listUsers = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_DELETE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(
+      `/api/user/${id}`,
+      config
+    )
+
+    dispatch({ type: USER_DELETE_SUCCESS })
+  } catch (error) {
+    dispatch({
+      type: USER_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const updateUser = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.put(
+      `/api/user/${user._id}`,
+      user,
+      config
+    )
+
+    dispatch({ type: USER_UPDATE_SUCCESS })
+
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({
+      type: USER_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

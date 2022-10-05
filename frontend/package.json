@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://ecommerce-backend-00fl.onrender.com",
   "dependencies": {
     "@paypal/react-paypal-js": "^7.8.1",
     "@redux-devtools/extension": "^3.2.3",

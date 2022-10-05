@@ -5,7 +5,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listUsers } from '../actions/userActions'
+import { deleteUser, listUsers } from '../actions/userActions'
 
 const UserListScreen = () => {
   const dispatch = useDispatch()
@@ -17,16 +17,21 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const userDelete = useSelector((state) => state.userDelete)
+  const { success: successDelete } = userDelete
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers())
     } else {
       navigate('/login')
     }
-  }, [dispatch, userInfo, navigate])
+  }, [dispatch, userInfo, navigate, successDelete])
 
   const deleteHandler = (id) => {
-    console.log(`Deleted ${id}`)
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteUser(id))
+    }
   }
 
   return (
@@ -63,8 +68,8 @@ const UserListScreen = () => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
-                    <Button variant='info' className='btn-sm'>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                    <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit'></i>
                     </Button>
                   </LinkContainer>
