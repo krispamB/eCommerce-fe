@@ -39,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      '/api/user/login',
+      'http://localhost:8080/api/user/login',
       { email, password },
       config
     )
@@ -84,7 +84,7 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      '/api/user',
+      'http://localhost:8080/api/user',
       { name, email, password },
       config
     )
@@ -129,7 +129,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `/api/user/${id}`,
+      `http://localhost:8080/api/user/${id}`,
       config
     )
 
@@ -166,7 +166,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `/api/user/profile`,
+      `http://localhost:8080/api/user/profile`,
       user,
       config
     )
@@ -203,7 +203,7 @@ export const listUsers = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `/api/user`,
+      `http://localhost:8080/api/user`,
       config
     )
 
@@ -239,7 +239,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     }
 
     await axios.delete(
-      `/api/user/${id}`,
+      `http://localhost:8080/api/user/${id}`,
       config
     )
 
@@ -273,7 +273,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `/api/user/${user._id}`,
+      `http://localhost:8080/api/user/${user._id}`,
       user,
       config
     )

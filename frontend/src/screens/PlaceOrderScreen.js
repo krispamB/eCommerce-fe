@@ -57,7 +57,6 @@ const PlaceOrderScreen = () => {
         totalPrice: cart.totalPrice,
       })
     )
-    console.log(cart.shippingAddress.address)
   }
 
   return (
