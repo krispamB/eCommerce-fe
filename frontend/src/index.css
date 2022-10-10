@@ -52,3 +52,12 @@ h2 {
     font-size: 2.5vw;
   }
 }
+
+@media (max-width: 412px) {
+  h1, h2{
+    font-size: 0.7em;
+  }
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
+}
