@@ -30,7 +30,7 @@ export const listProducts =
       dispatch({ type: PRODUCT_LIST_REQUEST })
 
       const { data } = await axios.get(
-        `http://localhost:8080/api/product?keyword=${keyword}&pageNumber=${pageNumber}`
+        `https://ecommerce-backend-00fl.onrender.com/api/product?keyword=${keyword}&pageNumber=${pageNumber}`
       )
 
       dispatch({
@@ -52,7 +52,7 @@ export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST })
 
-    const { data } = await axios.get(`http://localhost:8080/api/product/top`)
+    const { data } = await axios.get(`https://ecommerce-backend-00fl.onrender.com/api/product/top`)
 
     dispatch({
       type: PRODUCT_TOP_SUCCESS,
@@ -73,7 +73,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-    const { data } = await axios.get(`http://localhost:8080/api/product/${id}`)
+    const { data } = await axios.get(`https://ecommerce-backend-00fl.onrender.com/api/product/${id}`)
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
@@ -107,7 +107,7 @@ export const createProduct = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.post(
-      `http://localhost:8080/api/product`,
+      `https://ecommerce-backend-00fl.onrender.com/api/product`,
       {},
       config
     )
@@ -142,7 +142,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
       },
     }
 
-    await axios.delete(`http://localhost:8080/api/product/${id}`, config)
+    await axios.delete(`https://ecommerce-backend-00fl.onrender.com/api/product/${id}`, config)
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
     })
@@ -175,7 +175,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/product/${product._id}`,
+      `http://https://ecommerce-backend-00fl.onrender.com/api/product/${product._id}`,
       product,
       config
     )
@@ -213,7 +213,7 @@ export const createProductReview =
       }
 
       await axios.post(
-        `http://localhost:8080/api/product/${productId}/review`,
+        `https://ecommerce-backend-00fl.onrender.com/api/product/${productId}/review`,
         review,
         config
       )

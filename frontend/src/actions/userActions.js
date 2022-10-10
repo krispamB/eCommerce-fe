@@ -39,7 +39,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'http://localhost:8080/api/user/login',
+      'https://ecommerce-backend-00fl.onrender.com/api/user/login',
       { email, password },
       config
     )
@@ -84,7 +84,7 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'http://localhost:8080/api/user',
+      'https://ecommerce-backend-00fl.onrender.com/api/user',
       { name, email, password },
       config
     )
@@ -129,7 +129,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `http://localhost:8080/api/user/${id}`,
+      `https://ecommerce-backend-00fl.onrender.com/api/user/${id}`,
       config
     )
 
@@ -166,7 +166,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/user/profile`,
+      `https://ecommerce-backend-00fl.onrender.com/api/user/profile`,
       user,
       config
     )
@@ -203,7 +203,7 @@ export const listUsers = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `http://localhost:8080/api/user`,
+      `https://ecommerce-backend-00fl.onrender.com/api/user`,
       config
     )
 
@@ -239,7 +239,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     }
 
     await axios.delete(
-      `http://localhost:8080/api/user/${id}`,
+      `https://ecommerce-backend-00fl.onrender.com/api/user/${id}`,
       config
     )
 
@@ -273,7 +273,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/user/${user._id}`,
+      `https://ecommerce-backend-00fl.onrender.com/api/user/${user._id}`,
       user,
       config
     )

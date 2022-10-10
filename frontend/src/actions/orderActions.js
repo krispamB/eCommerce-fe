@@ -39,7 +39,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.post(
-      `http://localhost:8080/api/order`,
+      `https://ecommerce-backend-00fl.onrender.com/api/order`,
       order,
       config
     )
@@ -75,7 +75,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `http://localhost:8080/api/order/${id}`,
+      `https://ecommerce-backend-00fl.onrender.com/api/order/${id}`,
       config
     )
     dispatch({
@@ -110,7 +110,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/order/${order._id}/deliver`,
+      `https://ecommerce-backend-00fl.onrender.com/api/order/${order._id}/deliver`,
       {},
       config
     )
@@ -150,7 +150,7 @@ export const payOrder =
       }
 
       const { data } = await axios.put(
-        `http://localhost:8080/api/order/${orderId}/pay`,
+        `https://ecommerce-backend-00fl.onrender.com/api/order/${orderId}/pay`,
         paymentResult,
         config
       )
@@ -188,7 +188,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `http://localhost:8080/api/order/myOrders`,
+      `https://ecommerce-backend-00fl.onrender.com/api/order/myOrders`,
       config
     )
     dispatch({
@@ -222,7 +222,7 @@ export const listOrders = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`http://localhost:8080/api/order`, config)
+    const { data } = await axios.get(`https://ecommerce-backend-00fl.onrender.com/api/order`, config)
     dispatch({
       type: ORDER_LIST_SUCCESS,
       payload: data,

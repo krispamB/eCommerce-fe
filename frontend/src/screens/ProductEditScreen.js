@@ -66,7 +66,7 @@ const ProductEditScreen = () => {
         },
       }
 
-      const { data } = await axios.post('http://localhost:8080/api/upload', formData, config)
+      const { data } = await axios.post('http://https://ecommerce-backend-00fl.onrender.com/api/upload', formData, config)
       setImage(data)
       setUploading(false)
     } catch (error) {
