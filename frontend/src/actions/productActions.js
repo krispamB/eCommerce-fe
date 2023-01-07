@@ -175,7 +175,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `http://https://ecommerce-backend-00fl.onrender.com/api/product/${product._id}`,
+      `https://ecommerce-backend-00fl.onrender.com/api/product/${product._id}`,
       product,
       config
     )
