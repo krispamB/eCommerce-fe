@@ -8,6 +8,7 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import { BASE_URL } from '../constants/url'
 
 const ProductEditScreen = () => {
   const { productId } = useParams()
@@ -66,7 +67,7 @@ const ProductEditScreen = () => {
         },
       }
 
-      const { data } = await axios.post('https://ecommerce-backend-00fl.onrender.com/api/upload', formData, config)
+      const { data } = await axios.post(`${BASE_URL}/upload`, formData, config)
       setImage(data)
       setUploading(false)
     } catch (error) {
