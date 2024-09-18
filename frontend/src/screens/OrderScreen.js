@@ -24,6 +24,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants'
+import { BASE_URL } from '../constants/url'
 
 const OrderScreen = () => {
   const dispatch = useDispatch()
@@ -52,7 +53,7 @@ const OrderScreen = () => {
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get(
-        `https://ecommerce-backend-00fl.onrender.com/api/config/paypal`
+        `${BASE_URL}/config/paypal`
       )
       const script = document.createElement('script')
       script.type = 'text/javascript'

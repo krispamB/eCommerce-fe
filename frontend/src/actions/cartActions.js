@@ -5,10 +5,11 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants'
+import { BASE_URL } from '../constants/url'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(
-    `https://ecommerce-backend-00fl.onrender.com/api/product/${id}`
+    `${BASE_URL}/product/${id}`
   )
 
   dispatch({

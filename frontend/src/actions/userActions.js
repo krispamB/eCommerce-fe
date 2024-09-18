@@ -25,6 +25,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
 } from '../constants/userConstants'
+import { BASE_URL } from '../constants/url'
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -39,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'https://ecommerce-backend-00fl.onrender.com/api/user/login',
+      `${BASE_URL}/user/login`,
       { email, password },
       config
     )
@@ -84,7 +85,7 @@ export const register = (name, email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      'https://ecommerce-backend-00fl.onrender.com/api/user',
+      `${BASE_URL}/user`,
       { name, email, password },
       config
     )
@@ -129,7 +130,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/${id}`,
+      `${BASE_URL}/user/${id}`,
       config
     )
 
@@ -166,7 +167,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/profile`,
+      `${BASE_URL}/user/profile`,
       user,
       config
     )
@@ -203,7 +204,7 @@ export const listUsers = () => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      `https://ecommerce-backend-00fl.onrender.com/api/user`,
+      `${BASE_URL}/user`,
       config
     )
 
@@ -239,7 +240,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     }
 
     await axios.delete(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/${id}`,
+      `${BASE_URL}/user/${id}`,
       config
     )
 
@@ -273,7 +274,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `https://ecommerce-backend-00fl.onrender.com/api/user/${user._id}`,
+      `${BASE_URL}/user/${user._id}`,
       user,
       config
     )
